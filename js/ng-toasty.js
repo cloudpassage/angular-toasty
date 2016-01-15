@@ -33,6 +33,10 @@ angular.module('toasty', ['ngAnimate'])
                 options.type = 'info';
                 that.pop(options);
             }
+            this.pop.announcement = function(options) {
+                options.type = 'announcement';
+                that.pop(options);
+            }
             this.clear = function() {
                 $rootScope.$broadcast('toasty-clearToasties');
             };
@@ -54,7 +58,8 @@ angular.module('toasty', ['ngAnimate'])
             info: 'toasty-info',
             wait: 'toasty-wait',
             success: 'toasty-success',
-            warning: 'toasty-warning'
+            warning: 'toasty-warning',
+            announcement: 'toasty-announcement'
         },
         //  'body-output-type': '', // Options: '', 'trustedHtml', 'template'
         // 'body-template': 'toastyBodyTmpl.html',
