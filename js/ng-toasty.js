@@ -61,8 +61,7 @@ angular.module('toasty', ['ngAnimate'])
             warning: 'toasty-warning',
             announcement: 'toasty-announcement'
         },
-        //  'body-output-type': '', // Options: '', 'trustedHtml', 'template'
-        // 'body-template': 'toastyBodyTmpl.html',
+        allowHtml: false,
         classes: {
             'icon': 'toasty-info',
             'msg': 'toasty-message'
@@ -252,7 +251,8 @@ angular.module('toasty', ['ngAnimate'])
                             '           <span class="toasty-status-icon"></span>' +
                             '       </div>' +
                             '       <div ng-click="onClick(toasty)" class="toasty-text">' +
-                            '           <span ng-class="toasty.config.classes.msg" ng-bind="toasty.msg"></span>' +
+                            '           <span ng-if="!toasty.config.allowHtml" ng-class="toasty.config.classes.msg" ng-bind="toasty.msg"></span>' +
+                            '           <span ng-if="toasty.config.allowHtml" ng-class="toasty.config.classes.msg" ng-bind-html="toasty.msg"></span>' +
                             '       </div>' +
                             '    </div>' +
                             '</div>'
