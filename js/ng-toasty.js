@@ -43,7 +43,9 @@ angular.module('toasty', ['ngAnimate'])
             this.removeToasty = function(id) {
                 $rootScope.$broadcast('toasty-removeToasty', id);
             };
-
+            this.toastyClosed = function (instance) {
+              $rootScope.$broadcast('toasty-closed', instance);
+            };
         }
     ])
     .constant('toastyConfig', {
@@ -150,6 +152,10 @@ angular.module('toasty', ['ngAnimate'])
                     scope.$on('toasty-removeToasty', function(ev, id) {
                         scope.removeToasty(id);
                     });
+
+                    scope.$on('toasty-close', function (event, instance) {
+                      toasty.toastyClosed(instance);
+                    });
                 },
                 controller: ['$scope', '$element', '$attrs',
                     function($scope, $element, $attrs) {
@@ -196,6 +202,7 @@ angular.module('toasty', ['ngAnimate'])
 
                         // close button click
                         $scope.closeClick = function(toasty) {
+                            $scope.$broadcast('toasty-close', toasty);
                             $scope.removeToasty(toasty.id);
                         }
                         // clickToClose
