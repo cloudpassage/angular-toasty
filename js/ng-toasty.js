@@ -252,7 +252,7 @@ angular.module('toasty', ['ngAnimate'])
                     }
                 ],
                 template:   '<div id="toasty-container" ng-class="config.position">' +
-                            '    <div ng-repeat="toasty in toasties" class="toasty" ng-click="tapRemove(toasty)" ng-class="toasty.type" ng-mouseover="stopTimer(toasty)" ng-mouseout="restartTimer(toasty)">' +
+                            '    <div ng-repeat="toasty in toasties" class="toasty" ng-click="tapRemove(toasty)" ng-class="toasty.type" ng-mouseover="toasty.config.timeout > 0 && stopTimer(toasty)" ng-mouseout="toasty.config.timeout > 0 && restartTimer(toasty)">' +
                             '       <button ng-click="closeClick(toasty)" class="toasty-close-button" ng-if="toasty.showClose">&times;</button>' +
                             '       <div class="toasty-status">' +
                             '           <span class="toasty-status-icon"></span>' +
